@@ -1,0 +1,4 @@
+component_depth: 10
+default_excludes: true
+languages:
+- java
