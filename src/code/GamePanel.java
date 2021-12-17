@@ -108,7 +108,7 @@ public class GamePanel extends JPanel implements ActionListener {
             }
             // Draw the score
             g.setColor(Color.WHITE);
-            g.setFont(new Font("Lnk Free", Font.BOLD, 19));
+            g.setFont(new Font("Ink Free", Font.BOLD, 19));
             FontMetrics fm = g.getFontMetrics();
             g.drawString("Score: " + snake.getAppleEaten(),
                     (WIDTH - fm.stringWidth("Score: " + snake.getLength())) / 2,
@@ -143,11 +143,11 @@ public class GamePanel extends JPanel implements ActionListener {
     public void gameOver(Graphics g ) {
         // Draw the game over text
         g.setColor(Color.RED);
-        g.setFont(new Font("Lnk Free", Font.BOLD, 75));
+        g.setFont(new Font("Ink Free", Font.BOLD, 75));
         FontMetrics fm = getFontMetrics(g.getFont());
         g.drawString("Game Over", (WIDTH - fm.stringWidth("Game Over")) / 2, HEIGHT / 2);
         // Draw the score
-        g.setFont(new Font("Lnk Free", Font.BOLD, 25));
+        g.setFont(new Font("Ink Free", Font.BOLD, 25));
         fm = getFontMetrics(g.getFont());
         g.drawString("Score: " + snake.getAppleEaten(),
                 (WIDTH - fm.stringWidth("Score: " + snake.getAppleEaten())) / 2,
