@@ -1,6 +1,5 @@
 package code.controlers;
 
-import code.GamePanel;
 import code.enums.Directions;
 import code.gameComponents.Snake;
 
