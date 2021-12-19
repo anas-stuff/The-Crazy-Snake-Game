@@ -13,6 +13,7 @@ public class Snake {
     private Directions direction; // Direction of the snake
     private Color headColor; // Color of the head
     private Color bodyColor; // Color of the body
+    private boolean paused; // if the game is paused
     public Snake(Color headColor, Color bodyColor) {
         x = new int[GamePanel.GAME_UNITS];
         y = new int[GamePanel.GAME_UNITS];
@@ -26,23 +27,40 @@ public class Snake {
         this.headColor = headColor;
         // Initialize the body color
         this.bodyColor = bodyColor;
+        // Initialize the snake to be paused
+        paused = false;
     }
 
     // The move method.
     public void move() {
-        // Move all the segments of the snake one step forward
-        for (int i = length; i > 0; i--) {
-            x[i] = x[i - 1];
-            y[i] = y[i - 1];
-        }
+        // Check if the game is paused
+        if (!paused) {
+            // Move all the segments of the snake one step forward
+            for (int i = length; i > 0; i--) {
+                x[i] = x[i - 1];
+                y[i] = y[i - 1];
+            }
 
-        // Move the head of the snake based on the direction
-        switch (direction) {
-            case UP -> y[0] -= GamePanel.UNIT_SIZE;
-            case DOWN -> y[0] += GamePanel.UNIT_SIZE;
-            case LEFT -> x[0] -= GamePanel.UNIT_SIZE;
-            case RIGHT -> x[0] += GamePanel.UNIT_SIZE;
+            // Move the head of the snake based on the direction
+            switch (direction) {
+                case UP -> y[0] -= GamePanel.UNIT_SIZE;
+                case DOWN -> y[0] += GamePanel.UNIT_SIZE;
+                case LEFT -> x[0] -= GamePanel.UNIT_SIZE;
+                case RIGHT -> x[0] += GamePanel.UNIT_SIZE;
+            }
         }
+    }
+
+    // The pause method.
+    public void pause() {
+        // Pause the snake
+        paused = true;
+    }
+
+    // The unpause method.
+    public void unpause() {
+        // Unpause the snake
+        paused = false;
     }
 
     // Checks if the snake has collided with itself or corners
@@ -102,6 +120,10 @@ public class Snake {
     }
 
     public void setDirection(Directions direction) {
+        // If the key is pressed, the snake will move in the direction of the key
+        if (isPaused()) {
+            unpause();
+        }
         // Check if the direction is not opposite to the current direction
         if (!this.direction.getOpposite().equals(direction.name())) {
             this.direction = direction;
@@ -127,5 +149,9 @@ public class Snake {
 
     public void setBodyColor(Color bodyColor) {
         this.bodyColor = bodyColor;
+    }
+
+    public boolean isPaused() {
+        return paused;
     }
 }

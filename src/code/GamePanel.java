@@ -140,7 +140,7 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     // Draw game over method
-    public void gameOver(Graphics g ) {
+    public void gameOver(Graphics g) {
         // Draw the game over text
         g.setColor(Color.RED);
         g.setFont(new Font("Ink Free", Font.BOLD, 75));
