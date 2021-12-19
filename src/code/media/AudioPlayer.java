@@ -34,11 +34,6 @@ public abstract class AudioPlayer {
         }
     }
 
-    public void stop() throws IOException {
-        buffer.close(); // Close buffer
-        player.close(); // Stop player
-    }
-
     public void pause() throws IOException {
         if (isPlaying) { // If playing
             position = buffer.available(); // Save current position
