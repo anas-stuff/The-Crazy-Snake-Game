@@ -39,19 +39,29 @@ public class GameOverScreen {
         // Change the color of the text to red
         g.setColor(Color.RED);
         // Draw the game over text
-        int strWidth = g.getFontMetrics().stringWidth(str);
-        g.drawString(str, (WIDTH - strWidth) / 2, HEIGHT / 3);
+        g.drawString(str,
+                (WIDTH - g.getFontMetrics().stringWidth(str)) / 2,
+                HEIGHT / 3);
         g.setFont(new Font(g.getFont().getFamily(), Font.BOLD, 35));
-        g.drawString("Score: " + score, game.getWidth() / 2 - 50, game.getHeight() / 2 - 50);
-        g.drawString("High Score: " + highScore, game.getWidth() / 2 - 100, game.getHeight() / 2);
-        g.drawString("Level: " + level, game.getWidth() / 2 - 50, game.getHeight() / 2 + 50);
-        g.drawString("Lives: " + lives, game.getWidth() / 2 - 50, game.getHeight() / 2 + 100);
-        // Change str
-        str = "Press Space or Enter to Play Again";
-        strWidth = g.getFontMetrics().stringWidth(str);
-        g.drawString(str, (game.getWidth() - strWidth) / 2, game.getHeight() / 2 + 150);
+        g.drawString(str = "Score: " + score,
+                (game.getWidth() - g.getFontMetrics().stringWidth(str)) / 2,
+                game.getHeight() / 2 - 50);
+        g.drawString(str = "High Score: " + highScore,
+                (game.getWidth() - g.getFontMetrics().stringWidth(str)) / 2,
+                game.getHeight() / 2);
+        g.drawString(str = "Level: " + level,
+                (game.getWidth() - g.getFontMetrics().stringWidth(str)) / 2,
+                game.getHeight() / 2 + 50);
+        g.drawString("Lives: " + lives,
+                (game.getWidth() - g.getFontMetrics().stringWidth(str)) / 2,
+                game.getHeight() / 2 + 100);
+        g.drawString(str = "Press Space or Enter to Play Again",
+                (game.getWidth() - g.getFontMetrics().stringWidth(str)) / 2,
+                game.getHeight() / 2 + 150);
         if (newHighScore) {
-            g.drawString("New High Score!", game.getWidth() / 2 - 100, game.getHeight() / 2 + 200);
+            g.drawString(str = "New High Score!",
+                    (game.getWidth() - g.getFontMetrics().stringWidth(str)) / 2,
+                    game.getHeight() / 2 + 200);
         }
     }
 }
