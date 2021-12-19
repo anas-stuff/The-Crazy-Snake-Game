@@ -9,7 +9,7 @@ public class Snake {
     private int length; // length of the snake or number of segments in the snake
     private int[] x; // x-coordinates of snake
     private int[] y; // y is the column
-    private int appleEaten; // number of apples eaten
+    private int score, highScore; // number of apples eaten
     private Directions direction; // Direction of the snake
     private Color headColor; // Color of the head
     private Color bodyColor; // Color of the body
@@ -80,7 +80,9 @@ public class Snake {
         // Reset the length of the snake to 6
         length = 6;
         // Reset the apple eaten to 0
-        appleEaten = 0;
+        score = 0;
+        // Reset the high score to 0 temporarily
+        highScore = 0;
         // Reset the direction to right
         direction = Directions.RIGHT;
         // Initialize the snake to be paused
@@ -121,12 +123,12 @@ public class Snake {
         this.y = y;
     }
 
-    public int getAppleEaten() {
-        return appleEaten;
+    public int getScore() {
+        return score;
     }
 
-    public void setAppleEaten(int appleEaten) {
-        this.appleEaten = appleEaten;
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public Directions getDirection() {
@@ -146,7 +148,7 @@ public class Snake {
 
     public void addUnit() {
         length++;
-        appleEaten++;
+        score++;
     }
 
     public Color getHeadColor() {
@@ -167,5 +169,9 @@ public class Snake {
 
     public boolean isPaused() {
         return paused;
+    }
+
+    public int getHighScore() {
+        return highScore;
     }
 }

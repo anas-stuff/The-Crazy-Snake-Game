@@ -3,6 +3,7 @@ package code;
 import code.controlers.KeyInput;
 import code.gameComponents.Apple;
 import code.gameComponents.Snake;
+import code.screens.GameOverScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -120,11 +121,12 @@ public class GamePanel extends JPanel implements ActionListener {
             g.setColor(Color.WHITE);
             g.setFont(new Font("Ink Free", Font.BOLD, 19));
             FontMetrics fm = g.getFontMetrics();
-            g.drawString("Score: " + snake.getAppleEaten(),
+            g.drawString("Score: " + snake.getScore(),
                     (WIDTH - fm.stringWidth("Score: " + snake.getLength())) / 2,
                     g.getFont().getSize());
         } else { // Draw the game over screen
-            gameOver(g);
+            new GameOverScreen(this, snake, g);
+//            gameOver(g);
         }
     }
 
@@ -151,16 +153,14 @@ public class GamePanel extends JPanel implements ActionListener {
 
     // Draw game over method
     public void gameOver(Graphics g) {
-        // Draw the game over text
-        g.setColor(Color.RED);
-        g.setFont(new Font("Ink Free", Font.BOLD, 75));
+
         FontMetrics fm = getFontMetrics(g.getFont());
         g.drawString("Game Over", (WIDTH - fm.stringWidth("Game Over")) / 2, HEIGHT / 2);
         // Draw the score
         g.setFont(new Font("Ink Free", Font.BOLD, 25));
         fm = getFontMetrics(g.getFont());
-        g.drawString("Score: " + snake.getAppleEaten(),
-                (WIDTH - fm.stringWidth("Score: " + snake.getAppleEaten())) / 2,
+        g.drawString("Score: " + snake.getScore(),
+                (WIDTH - fm.stringWidth("Score: " + snake.getScore())) / 2,
                 HEIGHT / 2 + fm.getHeight());
     }
 
