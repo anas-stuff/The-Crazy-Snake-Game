@@ -12,9 +12,10 @@ public class Game {
     // This is a main method.
     public static void main(String[] args) {
         new Thread(() -> {
-            while (true) {
+            while (true) { // Temporary
                 try {
-                    musicPlayer.play();
+                    musicPlayer.play(); // Start playing music.
+                    // Wait for the music to finish.
                     if (musicPlayer.isPlaying() && musicPlayer.getLength() != 0) {
                         Thread.sleep(musicPlayer.getLength());
                     }
