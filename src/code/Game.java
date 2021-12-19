@@ -9,13 +9,15 @@ import java.io.IOException;
 public class Game {
     public static final MusicPlayer musicPlayer = new MusicPlayer();
 
-    // Constructor.
-    public Game() {
+    // This is a main method.
+    public static void main(String[] args) {
         new Thread(() -> {
             while (true) {
                 try {
                     musicPlayer.play();
-                    Thread.sleep(musicPlayer.getLength());
+                    if (musicPlayer.isPlaying() && musicPlayer.getLength() != 0) {
+                        Thread.sleep(musicPlayer.getLength());
+                    }
                 } catch (IOException | InterruptedException | JavaLayerException e) {
                     e.printStackTrace();
                 }
@@ -23,10 +25,5 @@ public class Game {
         }).start();
         // Create a game window.
         new Window();
-    }
-
-    // This is a main method.
-    public static void main(String[] args) {
-        new Game();
     }
 }

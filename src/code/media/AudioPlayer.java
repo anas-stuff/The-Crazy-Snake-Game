@@ -3,7 +3,9 @@ package code.media;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public abstract class AudioPlayer {
     protected String basePath;
@@ -26,9 +28,9 @@ public abstract class AudioPlayer {
         length = buffer.available(); // Get length of file
         player.play(); // Start player
         if (player.isComplete() && isPlaying) { // If player is complete
+            length = 0; // Set length to 0
             buffer.close(); // Close buffer
             isPlaying = false; // Set isPlaying to false
-            length = 0; // Set length to 0
         }
     }
 
