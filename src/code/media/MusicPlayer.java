@@ -1,12 +1,8 @@
 package code.media;
 
 import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.Player;
 
 public class MusicPlayer extends AudioPlayer {
 
