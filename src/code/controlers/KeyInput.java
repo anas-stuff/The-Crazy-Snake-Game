@@ -1,11 +1,14 @@
 package code.controlers;
 
+import code.Game;
 import code.GamePanel;
 import code.enums.Directions;
 import code.gameComponents.Snake;
+import javazoom.jl.decoder.JavaLayerException;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 public class KeyInput extends KeyAdapter {
     // Variables
@@ -47,6 +50,20 @@ public class KeyInput extends KeyAdapter {
                 snake.pause();
             } else {
                 snake.unpause();
+            }
+        }
+
+        // Mute or unmute the game
+        if (key == KeyEvent.VK_M) {
+            try {
+                if (Game.musicPlayer.isPlaying()) {
+                    Game.musicPlayer.pause();
+                } else {
+                    Game.musicPlayer.resume();
+                }
+                System.out.println("Game.musicPlayer.getLength() = " + Game.musicPlayer.getLength());
+            } catch (IOException | JavaLayerException ex) {
+                ex.printStackTrace();
             }
         }
     }

@@ -7,18 +7,26 @@ import java.io.IOException;
 
 // This is a main class.
 public class Game {
-    // This is a main method.
-    public static void main(String[] args) {
+    public static final MusicPlayer musicPlayer = new MusicPlayer();
+
+    // Constructor.
+    public Game() {
         new Thread(() -> {
-            try {
-                new MusicPlayer().play();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JavaLayerException e) {
-                e.printStackTrace();
+            while (true) {
+                try {
+                    musicPlayer.play();
+                    Thread.sleep(musicPlayer.getLength());
+                } catch (IOException | InterruptedException | JavaLayerException e) {
+                    e.printStackTrace();
+                }
             }
         }).start();
-        // Crete a game window.
+        // Create a game window.
         new Window();
+    }
+
+    // This is a main method.
+    public static void main(String[] args) {
+        new Game();
     }
 }

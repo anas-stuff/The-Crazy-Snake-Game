@@ -1,64 +1,43 @@
 package code.media;
 
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
-public class MusicPlayer {
-    private String basePath;
-    private String filename;
-    private Player player;
-    private BufferedInputStream buffer;
-    private File[] files;
+public class MusicPlayer extends AudioPlayer {
 
-    {
-        basePath = "media/music/";
-        filename = "";
-    }
+    protected File[] files;
 
+    // Constructor
     public MusicPlayer() {
         // Load music files
         try {
-            files = gatMusic();
-            filename = basePath + files[(int) (Math.random() * files.length)].getName();
+            files = getFiles();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-
     public void play() throws IOException, JavaLayerException {
-            buffer = new BufferedInputStream(new FileInputStream(filename));
-            player = new Player(buffer);
-            player.play();
-            if (player.isComplete()) {
-                buffer.close();
-                filename = files[(int) (Math.random() * files.length)].getName();
-            }
+        // Get random file
+        filename = basePath + "/" + files[(int) (Math.random() * files.length)].getName();
+        // Play file
+        super.play(filename);
     }
 
-    private File[] gatMusic() throws FileNotFoundException {
+    protected File[] getFiles() throws FileNotFoundException {
         // Open music file
         File musicFile = new File(basePath);
 
         // Check if music file exists and is a directory
         if (!musicFile.exists() || !musicFile.isDirectory()) {
-            throw new FileNotFoundException("Music file not found");
+            throw new FileNotFoundException("Audio folder not found");
         }
         // Get list of files in music directory
         return musicFile.listFiles();
     }
-
-    public void stop() throws IOException {
-        buffer.close();
-        player.close();
-    }
-
-    /*public static void main(String[] args) {
-        MusicPlayer mp3 = new MusicPlayer("song.mp3");
-        mp3.play();
-
-    }*/
-
 }

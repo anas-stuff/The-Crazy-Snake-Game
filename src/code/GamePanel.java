@@ -3,12 +3,15 @@ package code;
 import code.controlers.KeyInput;
 import code.gameComponents.Apple;
 import code.gameComponents.Snake;
+import code.media.MusicPlayer;
 import code.screens.GameOverScreen;
+import javazoom.jl.decoder.JavaLayerException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class GamePanel extends JPanel implements ActionListener {
 
@@ -51,6 +54,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     // Initialize method
     private void init() {
+
         // Initialize the snake (player)
         snake = new Snake(Color.green, new Color(45, 180, 0));
         // Initialize the apple
