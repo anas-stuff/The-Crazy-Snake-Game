@@ -12,8 +12,8 @@ import java.io.IOException;
 
 public class KeyInput extends KeyAdapter {
     // Variables
-    private Snake snake;
-    private GamePanel game;
+    private final Snake snake;
+    private final GamePanel game;
 
     // Constructor
     public KeyInput(Snake snake, GamePanel game) {
