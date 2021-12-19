@@ -12,7 +12,7 @@ public class MusicPlayer extends AudioPlayer {
     public MusicPlayer() {
         // Load music files
         try {
-            files = getFiles();
+            files = getFiles(); // Get list of tracks
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
