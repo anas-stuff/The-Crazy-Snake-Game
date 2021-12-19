@@ -17,18 +17,11 @@ public class Snake {
     public Snake(Color headColor, Color bodyColor) {
         x = new int[GamePanel.GAME_UNITS];
         y = new int[GamePanel.GAME_UNITS];
-        // Start with a snake length of 6
-        length = 6;
-        // Initialize the apple eaten to 0
-        appleEaten = 0;
-        // Initialize the direction to right
-        direction = Directions.RIGHT;
+        reset();
         // Initialize the head color
         this.headColor = headColor;
         // Initialize the body color
         this.bodyColor = bodyColor;
-        // Initialize the snake to be paused
-        paused = false;
     }
 
     // The move method.
@@ -80,6 +73,27 @@ public class Snake {
                 GamePanel.gameOver = true;
             }
         }
+    }
+
+    // The rest method.
+    public void reset() {
+        // Reset the length of the snake to 6
+        length = 6;
+        // Reset the apple eaten to 0
+        appleEaten = 0;
+        // Reset the direction to right
+        direction = Directions.RIGHT;
+        // Initialize the snake to be paused
+        paused = false;
+
+        // Initialize the x-coordinates and y-coordinates of the snake
+        for (int i = 1; i < length; i++) {
+            x[i] = -i * GamePanel.UNIT_SIZE;
+            y[i] = -i * GamePanel.UNIT_SIZE;
+        }
+        // Initialize the head of the snake
+        x[0] = 0;
+        y[0] = 0;
     }
 
     // The getters and setters

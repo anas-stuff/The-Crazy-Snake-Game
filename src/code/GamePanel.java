@@ -43,7 +43,7 @@ public class GamePanel extends JPanel implements ActionListener {
         // Set focusable
         setFocusable(true);
         // Add key listener
-        addKeyListener(new KeyInput(snake));
+        addKeyListener(new KeyInput(snake, this));
         // Start the game
         startGame();
     }
@@ -64,6 +64,16 @@ public class GamePanel extends JPanel implements ActionListener {
         // Start the timer
         timer.start();
 
+    }
+
+    // Restart game method
+    public void restart() {
+        // Set game start flag
+        gameStart = true;
+        // Set game over flag
+        gameOver = false;
+        // Reset the snake
+        snake.reset();
     }
 
     // Pint component method
@@ -168,11 +178,10 @@ public class GamePanel extends JPanel implements ActionListener {
         }
         // Repaint the game
         repaint();
-
-        // Check if the game is over
+        /*// Check if the game is over
         if (!gameStart || gameOver) {
             // Stop the timer
             timer.stop();
-        }
+        }*/
     }
 }
