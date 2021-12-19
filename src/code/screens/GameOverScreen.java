@@ -5,9 +5,6 @@ import code.gameComponents.Snake;
 
 import java.awt.*;
 
-import static code.GamePanel.HEIGHT;
-import static code.GamePanel.WIDTH;
-
 public class GameOverScreen {
     private int score; // The player's score
     private int highScore; // The high score
@@ -40,8 +37,8 @@ public class GameOverScreen {
         g.setColor(Color.RED);
         // Draw the game over text
         g.drawString(str,
-                (WIDTH - g.getFontMetrics().stringWidth(str)) / 2,
-                HEIGHT / 3);
+                (game.getWidth() - g.getFontMetrics().stringWidth(str)) / 2,
+                game.getHeight() / 3);
         g.setFont(new Font(g.getFont().getFamily(), Font.BOLD, 35));
         g.drawString(str = "Score: " + score,
                 (game.getWidth() - g.getFontMetrics().stringWidth(str)) / 2,
