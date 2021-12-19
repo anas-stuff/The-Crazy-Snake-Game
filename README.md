@@ -1,2 +1,2 @@
-# The-Magic-Snick-Game
+# The-Crazy-Snake-Game
 The snick game using java swing
