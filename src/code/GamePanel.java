@@ -179,10 +179,5 @@ public class GamePanel extends JPanel implements ActionListener {
         }
         // Repaint the game
         repaint();
-        /*// Check if the game is over
-        if (!gameStart || gameOver) {
-            // Stop the timer
-            timer.stop();
-        }*/
     }
 }
