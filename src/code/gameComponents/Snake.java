@@ -1,7 +1,9 @@
 package code.gameComponents;
 
+import code.Game;
 import code.GamePanel;
 import code.enums.Directions;
+import code.media.SFX;
 
 import java.awt.*;
 
@@ -14,6 +16,7 @@ public class Snake {
     private Color headColor; // Color of the head
     private Color bodyColor; // Color of the body
     private boolean paused; // if the game is paused
+    private boolean soundPlayed; // if the sound has been played
     public Snake(Color headColor, Color bodyColor) {
         x = new int[GamePanel.GAME_UNITS];
         y = new int[GamePanel.GAME_UNITS];
@@ -67,10 +70,16 @@ public class Snake {
         }
         // Check if the snake has collided with the corners
         if (andCorners) {
-            if(x[0] < 0 || x[0] > GamePanel.WIDTH) { // Head collided with left corner or right corner
+            if (x[0] < 0 || x[0] > GamePanel.WIDTH) { // Head collided with left corner or right corner
                 GamePanel.gameOver = true;
-            } else if(y[0] < 0 || y[0] > GamePanel.HEIGHT) { // Head collided with top corner or bottom corner
+            } else if (y[0] < 0 || y[0] > GamePanel.HEIGHT) { // Head collided with top corner or bottom corner
                 GamePanel.gameOver = true;
+            }
+            if (GamePanel.gameOver && !soundPlayed) {
+                // Play collision sound
+                Game.sfxPlayer.play(SFX.SnakeCollided);
+                // Set the sound played to true
+                soundPlayed = true;
             }
         }
     }
@@ -87,6 +96,8 @@ public class Snake {
         direction = Directions.RIGHT;
         // Initialize the snake to be paused
         paused = false;
+        // Initialize the sound played to false
+        soundPlayed = false;
 
         // Initialize the x-coordinates and y-coordinates of the snake
         for (int i = 1; i < length; i++) {
