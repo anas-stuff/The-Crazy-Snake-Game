@@ -3,6 +3,7 @@ package code;
 import code.controlers.KeyInput;
 import code.gameComponents.Apple;
 import code.gameComponents.Snake;
+import code.media.SFX;
 import code.screens.GameOverScreen;
 
 import javax.swing.*;
@@ -149,6 +150,8 @@ public class GamePanel extends JPanel implements ActionListener {
             snake.addUnit();
             // Generate new apple
             apple.generateApple();
+            // Play eat apple sound
+            Game.sfxPlayer.play(SFX.SnakeEat);
         }
     }
 
