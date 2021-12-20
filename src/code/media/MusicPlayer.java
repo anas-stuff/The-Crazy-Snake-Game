@@ -1,10 +1,16 @@
 package code.media;
 
-import java.io.*;
-
 import javazoom.jl.decoder.JavaLayerException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class MusicPlayer extends AudioPlayer {
+
+    {
+        basePath += "/music/"; // Add music to the base path
+    }
 
     protected File[] files;
 
@@ -20,7 +26,7 @@ public class MusicPlayer extends AudioPlayer {
 
     public void play() throws IOException, JavaLayerException {
         // Get random file
-        filename = basePath + "/" + files[(int) (Math.random() * files.length)].getName();
+        filename = basePath + files[(int) (Math.random() * files.length)].getName();
         // Play file
         super.play(filename);
     }

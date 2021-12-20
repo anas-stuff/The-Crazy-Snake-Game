@@ -17,7 +17,7 @@ public abstract class AudioPlayer {
     protected long length;
 
     {
-        basePath = "media/music/"; // Initialize base path
+        basePath = "./media"; // Initialize base path
         filename = ""; // Initialize filename
     }
 
