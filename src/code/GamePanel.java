@@ -1,6 +1,6 @@
 package code;
 
-import code.controlers.KeyInput;
+import code.controllers.KeyInput;
 import code.gameComponents.Apple;
 import code.gameComponents.Snake;
 import code.media.SFX;

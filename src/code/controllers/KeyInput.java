@@ -1,4 +1,4 @@
-package code.controlers;
+package code.controllers;
 
 import code.Game;
 import code.GamePanel;
@@ -23,7 +23,7 @@ public class KeyInput extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("Key pressed");
+        System.out.println("Key pressed " + e.getKeyChar());
         int key = e.getKeyCode();
 
         // Change snake direction
