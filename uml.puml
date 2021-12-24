@@ -13,11 +13,11 @@ package "code" {
             # position : long
             # isPlaying : boolean
             # length : long
-            +play(String filename)
-            +pause()
-            +resume()
-            +isPlaying() : boolean
-            +getLength() : long
+            + play(filename : String) : void
+            + pause()
+            + resume()
+            + isPlaying() : boolean
+            + getLength() : long
             }
         class MusicPlayer extends AudioPlayer {
             # files : File[]
@@ -54,8 +54,8 @@ package "code" {
             - gamePanel : GamePanel
             - snake : Snake
 
-            + KeyInput(GamePanel gamePanel, Snake snake)
-            + keyPressed(KeyEvent e) : void
+            + KeyInput(gamePanel : GamePanel, snake : Snake)
+            + keyPressed(e : KeyEvent) : void
         }
     }
 
@@ -103,21 +103,21 @@ package "code" {
             + pause() : void
             + unPause() : void
             + reset() : void
-            + setHeadColor(Color) : void
-            + setBodyColor(Color) : void
+            + setHeadColor(color : Color) : void
+            + setBodyColor(color : Color) : void
             + getHeadColor() : Color
             + getBodyColor() : Color
-            + setLength(int length) : void
+            + setLength(length : int) : void
             + getLength() : int
-            + setScore(int score) : void
+            + setScore(score : int) : void
             + getScore() : int
             + setHighScore(int highScore) : void
             + getHighScore() : int
-            + setX(int[] x) : void
+            + setX(x : int[]) : void
             + getX() : int[]
-            + setY(int[] y) : void
+            + setY(y : int[]) : void
             + getY() : int[]
-            + setDirection(Directions direction) : void
+            + setDirection(direction : Directions) : void
             + getDirection() : Directions
             + isPaused() : boolean
         }
@@ -140,8 +140,8 @@ package "code" {
             - level : int
             - highScore : int
 
-            + GameOverScreen(GamePanel gamePanel, Snake snake)
-            + draw(Graphics g) : void
+            + GameOverScreen(gamePanel : GamePanel, snake : Snake)
+            + draw(g : Graphics) : void
         }
     }
 
@@ -159,7 +159,7 @@ package "code" {
     ' Game panel class
         class GamePanel extends JPanel implements ActionListener {
              +  WIDTH : int
-             + HEIGHT : q
+             + HEIGHT : int
              +  UNIT_SIZE : int
              +  GAME_UNITS : int
              +  DELAY : int
@@ -172,14 +172,14 @@ package "code" {
              - timer : Timer
 
              + GamePanel()
-             + paintComponent(Graphics g) : void
-             + draw(Graphics g) : void
-             + actionPerformed(ActionEvent e) : void
+             + paintComponent(g : Graphics) : void
+             + draw(g : Graphics) : void
+             + actionPerformed(e : ActionEvent) : void
              - init() : void
              + reset() : void
              + startGame() : void
              + checkApple() : void
-             + drawGameMatrix(Graphics g) : void
+             + drawGameMatrix(g : Graphics) : void
         }
 
           GameOverScreen *-- Snake
