@@ -1,0 +1,187 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+' Main package
+package "code" {
+    ' media package
+    package "media" {
+        abstract class AudioPlayer {
+            # basePath : String
+            # filename : String
+            # player : Player
+            # buffer : BufferedInputStream
+            # position : long
+            # isPlaying : boolean
+            # length : long
+            +play(String filename)
+            +pause()
+            +resume()
+            +isPlaying() : boolean
+            +getLength() : long
+            }
+        class MusicPlayer extends AudioPlayer {
+            # files : File[]
+            +play()
+            # getFiles() : File[]
+            }
+
+        enum SFX {
+            BlockShow("blockShow.mp3")
+            BlockHide("blockHide.mp3")
+            SnakeEat("snakeEat.mp3")
+            SnakeCollided("snakeCollided.mp3")
+            Win("win.mp3")
+            Lose("Lose.mp3")
+            ButtonClick("buttonClick.mp3")
+
+            - fileName : String
+            - SFX(fileName)
+            + getFileName() : String
+        }
+
+        class SfxPlayer extends AudioPlayer {
+            + play(sfx)
+        }
+
+        ' Reation between classes in the same package
+        SfxPlayer *-- SFX
+
+    }
+
+    ' Controllers package
+    package "controllers" {
+        class KeyInput extends KeyAdapter {
+            - GamePanel gamePanel
+            - Snake snake
+
+            + KeyInput(GamePanel gamePanel, Snake snake)
+            + void keyPressed(KeyEvent e)
+        }
+    }
+
+    ' Enums package
+    package "enums" {
+        enum Directions {
+            Up
+            Down
+            Left
+            Right
+        }
+    }
+
+    ' Game components package
+    package "gameComponents" {
+        class Apple {
+            - int y
+            - int x
+            - Random rand
+            - Color color
+
+            + Apple(Color color)
+            + void genrateApple()
+            + Color getColor()
+            + int getX()
+            + int getY()
+        }
+
+        class Snake {
+            - int length
+            - int[] x
+            - int[] y
+            - int score
+            - int highScore
+            - Directions direction
+            - Color headColor
+            - Color bodyColor
+            - boolean paused
+            - boolean soundPlayed
+
+            + Snake(Color color)
+            + void move()
+            + void addUnit()
+            + void checkCollision()
+            + void pause()
+            + void unPause()
+            + void reset()
+            + void setHeadColor(Color color)
+            + void setBodyColor(Color color)
+            + Color getHeadColor()
+            + Color getBodyColor()
+            + void setLength(int length)
+            + int getLength()
+            + void setScore(int score)
+            + int getScore()
+            + void setHighScore(int highScore)
+            + int getHighScore()
+            + void setX(int[] x)
+            + int[] getX()
+            + void setY(int[] y)
+            + int[] getY()
+            + void setDirection(Directions direction)
+            + Directions getDirection()
+            + boolean isPaused()
+        }
+
+        Snake *-- Directions
+        Snake -- Apple
+        Snake -- KeyInput
+        Snake --* GamePanel
+        Snake -- SfxPlayer
+
+    }
+
+    ' Screens package
+    package "screens" {
+        class GameOverScreen {
+            - GamePanel gamePanel
+            - int score
+            - int highScore
+            - boolean newHighScore
+            - int lives
+            - int level
+            - int highScore
+
+            + GameOverScreen(GamePanel gamePanel, Snake snake)
+            + void draw(Graphics g)
+        }
+    }
+
+    GameOverScreen *-- Snake
+    GameOverScreen *-- GamePanel
+
+
+
+    ' Game panel class
+    class GamePanel {
+         + static final int WIDTH = 600
+         + static final HEIGHT = 600
+         + static final int UNIT_SIZE = 25
+         + static final int GAME_UNITS = (WIDTH * HEIGHT) / UNIT_SIZE
+         + static final int DELAY = 75
+         + static boolean gameStart = false
+         + static boolean gameOver = false
+         + static boolean magickColorForSnick = true
+         + static boolean magickColorForApple = true
+         - Snake snake
+         - Apple apple
+         - Timer timer
+
+    }
+
+    class Window extends JFrame {
+        + Window()
+    }
+
+    class Game {
+        + sfxPlayer : SfxPlayer
+        + musicPlayer : MusicPlayer
+
+        + main() : void
+    }
+
+    Window --* Game
+    Game *-- GamePanel
+
+}
+
+@enduml
