@@ -11,19 +11,37 @@
         <dependency>
             <groupId>javazoom</groupId>
             <artifactId>jlayer</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.1.4</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/jlayer-1.0.1.4.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <version>3.8.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/junit-3.8.2.jar</systemPath>
         </dependency>
     </dependencies>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
 
