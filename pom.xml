@@ -18,7 +18,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.2</version>
+            <version>4.13.2</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/resources/lib/junit-3.8.2.jar</systemPath>
         </dependency>
