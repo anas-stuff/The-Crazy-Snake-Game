@@ -182,14 +182,14 @@ package "code" {
              + drawGameMatrix(g : Graphics) : void
         }
 
-          GameOverScreen *-- Snake
-          GameOverScreen --* GamePanel
+    GameOverScreen *-- Snake
+    GameOverScreen --* GamePanel
 
-          GamePanel *-- Snake
-          GamePanel *-- Apple
+    GamePanel *-- Snake
+    GamePanel *-- Apple
 
-          KeyInput *-- Snake
-          KeyInput *-- GamePanel
+    KeyInput *-- Snake
+    KeyInput *-- GamePanel
 
     Window --* Game
 
