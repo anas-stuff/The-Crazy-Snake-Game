@@ -43,7 +43,7 @@ package "code" {
             + play(sfx)
         }
 
-        ' Reation between classes in the same package
+        ' Relation between classes in the same package
         SfxPlayer *-- SFX
 
     }
@@ -51,11 +51,11 @@ package "code" {
     ' Controllers package
     package "controllers" {
         class KeyInput extends KeyAdapter {
-            - GamePanel gamePanel
-            - Snake snake
+            - gamePanel : GamePanel
+            - snake : Snake
 
             + KeyInput(GamePanel gamePanel, Snake snake)
-            + void keyPressed(KeyEvent e)
+            + keyPressed(KeyEvent e) : void
         }
     }
 
@@ -72,60 +72,59 @@ package "code" {
     ' Game components package
     package "gameComponents" {
         class Apple {
-            - int y
-            - int x
-            - Random rand
-            - Color color
+            - y : int
+            - x : int
+            - rand : Random
+            - color : Color
 
-            + Apple(Color color)
-            + void genrateApple()
-            + Color getColor()
-            + int getX()
-            + int getY()
+            + Apple(Color)
+            + generateApple() : void
+            + getColor() : Color
+            + getX() : int
+            + getY() : int
         }
 
         class Snake {
-            - int length
-            - int[] x
-            - int[] y
-            - int score
-            - int highScore
-            - Directions direction
-            - Color headColor
-            - Color bodyColor
-            - boolean paused
-            - boolean soundPlayed
+            - length : int
+            - x : int[]
+            - y : int[]
+            - score : int
+            - highScore : int
+            - direction : Directions
+            - headColor : Color
+            - bodyColor : Color
+            - paused : boolean
+            - soundPlayed : boolean
 
-            + Snake(Color color)
-            + void move()
-            + void addUnit()
-            + void checkCollision()
-            + void pause()
-            + void unPause()
-            + void reset()
-            + void setHeadColor(Color color)
-            + void setBodyColor(Color color)
-            + Color getHeadColor()
-            + Color getBodyColor()
-            + void setLength(int length)
-            + int getLength()
-            + void setScore(int score)
-            + int getScore()
-            + void setHighScore(int highScore)
-            + int getHighScore()
-            + void setX(int[] x)
-            + int[] getX()
-            + void setY(int[] y)
-            + int[] getY()
-            + void setDirection(Directions direction)
-            + Directions getDirection()
-            + boolean isPaused()
+            + Snake(Color)
+            + move() : void
+            + addUnit() : void
+            + checkCollision() : void
+            + pause() : void
+            + unPause() : void
+            + reset() : void
+            + setHeadColor(Color) : void
+            + setBodyColor(Color) : void
+            + getHeadColor() : Color
+            + getBodyColor() : Color
+            + setLength(int length) : void
+            + getLength() : int
+            + setScore(int score) : void
+            + getScore() : int
+            + setHighScore(int highScore) : void
+            + getHighScore() : int
+            + setX(int[] x) : void
+            + getX() : int[]
+            + setY(int[] y) : void
+            + getY() : int[]
+            + setDirection(Directions direction) : void
+            + getDirection() : Directions
+            + isPaused() : boolean
         }
 
         Snake *-- Directions
         Snake -- Apple
         Snake -- KeyInput
-        Snake --* GamePanel
         Snake -- SfxPlayer
 
     }
@@ -133,39 +132,17 @@ package "code" {
     ' Screens package
     package "screens" {
         class GameOverScreen {
-            - GamePanel gamePanel
-            - int score
-            - int highScore
-            - boolean newHighScore
-            - int lives
-            - int level
-            - int highScore
+            - gamePanel : GamePanel
+            - score : int
+            - highScore : int
+            - newHighScore : boolean
+            - lives : int
+            - level : int
+            - highScore : int
 
             + GameOverScreen(GamePanel gamePanel, Snake snake)
-            + void draw(Graphics g)
+            + draw(Graphics g) : void
         }
-    }
-
-    GameOverScreen *-- Snake
-    GameOverScreen *-- GamePanel
-
-
-
-    ' Game panel class
-    class GamePanel {
-         + static final int WIDTH = 600
-         + static final HEIGHT = 600
-         + static final int UNIT_SIZE = 25
-         + static final int GAME_UNITS = (WIDTH * HEIGHT) / UNIT_SIZE
-         + static final int DELAY = 75
-         + static boolean gameStart = false
-         + static boolean gameOver = false
-         + static boolean magickColorForSnick = true
-         + static boolean magickColorForApple = true
-         - Snake snake
-         - Apple apple
-         - Timer timer
-
     }
 
     class Window extends JFrame {
@@ -179,8 +156,48 @@ package "code" {
         + main() : void
     }
 
+    ' Game panel class
+        class GamePanel extends JPanel implements ActionListener {
+             +  WIDTH : int
+             + HEIGHT : q
+             +  UNIT_SIZE : int
+             +  GAME_UNITS : int
+             +  DELAY : int
+             + gameStart : boolean
+             + gameOver : boolean
+             + magickColorForSnick : boolean
+             + magickColorForApple : boolean
+             - snake : Snake
+             - apple : Apple
+             - timer : Timer
+
+             + GamePanel()
+             + paintComponent(Graphics g) : void
+             + draw(Graphics g) : void
+             + actionPerformed(ActionEvent e) : void
+             - init() : void
+             + reset() : void
+             + startGame() : void
+             + checkApple() : void
+             + drawGameMatrix(Graphics g) : void
+        }
+
+          GameOverScreen *-- Snake
+          GameOverScreen --* GamePanel
+
+          GamePanel *-- Snake
+          GamePanel *-- Apple
+
+          KeyInput *-- Snake
+          KeyInput *-- GamePanel
+
     Window --* Game
+
     Game *-- GamePanel
+    Game *-- MusicPlayer
+    Game *-- SfxPlayer
+
+    AudioPlayer *-- Player
 
 }
 
