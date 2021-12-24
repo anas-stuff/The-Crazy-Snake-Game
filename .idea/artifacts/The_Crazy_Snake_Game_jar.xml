@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="The-Crazy-Snake-Game:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/The_Crazy_Snake_Game_jar</output-path>
+    <root id="archive" name="The-Crazy-Snake-Game.jar">
+      <element id="module-output" name="The-Crazy-Snake-Game" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/resources/lib/junit-3.8.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/main/resources/lib/jlayer-1.0.1.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
